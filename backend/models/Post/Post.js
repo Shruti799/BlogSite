@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
     image: {
       type: Object,
@@ -10,22 +9,16 @@ const postSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      //required: true,
+      // required: true,
     },
     nextEarningDate: {
       type: Date,
       default: () =>
         new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1), // Default to the first day of the next month
     },
-    
     thisMonthEarnings: { type: Number, default: 0 },
     totalEarnings: { type: Number, default: 0 },
-    lastCalculatedViewsCount: { type: Number, default: 0 },
-    category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-      //required: true,
-    },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
     viewsCount: { type: Number, default: 0 },
     // Interactions
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
