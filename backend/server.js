@@ -1,9 +1,12 @@
 
 require("dotenv").config();
 const corse = require("cors");
+const passport = require("./utils/passport-config");
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./utils/connectDB");
 const postRouter = require("./router/post/postsRouter");
+const usersRouter = require("./router/user/usersRouter");
 //call the db
 connectDB();
 const app = express();
@@ -18,8 +21,12 @@ const corsOptions = {
   credentials: true,
 };
 app.use(corse(corsOptions));
+// Passport middleware
+app.use(passport.initialize());
+app.use(cookieParser()); //automattically parses the cookie
 //!---Route handlers
-app.use("/api/v1", postRouter);
+app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/users", usersRouter);
 
 //!Not found
 app.use((req, res, next) => {

@@ -3,6 +3,8 @@ import React from "react";
 import "./postCss.css";
 import { deletePostAPI, fetchAllPosts } from "../../APIServices/posts/postsAPI";
 import { Link } from "react-router-dom";
+import NoDataFound from "../Alert/NoDataFound";
+import AlertMessage from "../Alert/AlertMessage";
 
 const PostsList = () => {
   // ! use query
@@ -16,15 +18,24 @@ const PostsList = () => {
     mutationFn: deletePostAPI,
   });
   //delete handler
-  const deleteHandler = async (postId) => {
-    postMutation
-      .mutateAsync(postId)
-      .then(() => {
-        refetch();
-      })
-      .catch((e) => console.log(e));
-    //refetch
-  };
+  // const deleteHandler = async (postId) => {
+  //   postMutation
+  //     .mutateAsync(postId)
+  //     .then(() => {
+  //       refetch();
+  //     })
+  //     .catch((e) => console.log(e));
+  //   //refetch
+  // };
+  // Show messages to the user
+  // ! is Loading
+  if (isLoading)
+    return <AlertMessage type="loading" message="Loading please wait" />;
+  //! is Err
+  if (isError)
+    return <AlertMessage type="error" message="Something happened" />;
+  //! not post found
+  if (data?.posts?.length <= 0) return <NoDataFound text="No Post Found" />;
   return (
     <section className="overflow-hidden">
       <div className="container px-4 mx-auto">
@@ -53,8 +64,8 @@ const PostsList = () => {
                     <div className="absolute bottom-0 right-0 z-10"></div>
                     <img
                       className="absolute inset-0 w-full h-full object-cover rounded-2xl"
-                      src="https://cdn.pixabay.com/photo/2023/12/19/15/51/flowers-8457960_1280.jpg"
-                      alt
+                      src={post?.image?.path}
+                      alt={post?.description}
                     />
                   </div>
                   <div className="pt-6 pb-3 px-4">

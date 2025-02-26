@@ -7,7 +7,7 @@ const postController = {
     console.log(req.file);
     //get the payload
     const { description } = req.body;
-    const postCreated = await Post.create({ description });
+    const postCreated = await Post.create({ description, image: req.file });
     res.json({
       status: "success",
       message: "Post created successfully",
@@ -24,6 +24,7 @@ const postController = {
       posts,
     });
   }),
+
   //! get a post
   getPost: asyncHandler(async (req, res) => {
     //get the post id from params
@@ -36,6 +37,7 @@ const postController = {
       postFound,
     });
   }),
+
   //! delete
   delete: asyncHandler(async (req, res) => {
     //get the post id from params
@@ -47,7 +49,8 @@ const postController = {
       message: "Post deleted successfully",
     });
   }),
-  //! pdate post
+
+  //! update post
   update: asyncHandler(async (req, res) => {
     //get the post id from params
     const postId = req.params.postId;

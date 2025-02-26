@@ -1,56 +1,27 @@
-// const express = require("express");
-// const asyncHandler = require("express-async-handler");
-// const Post = require("../../models/Post/Post");
-// const postController = require("../../controllers/posts/postController");
-// //!create instance express router
-// const postRouter = express.Router();
-
-// //-----Create post----
-
-// postRouter.post("/posts/create", postController.createPost);
-
-// //----lists all posts----
-// postRouter.get("/posts", postController.fetchAllPosts);
-
-// //----update post----
-// postRouter.put("/posts/:postId", postController.update);
-
-// //--- get post---
-// postRouter.get("/posts/:postId", postController.getPost);
-
-// //---delete post---
-// postRouter.delete("/posts/:postId", postController.delete);
-
-// module.exports = postRouter;
-
 
 const express = require("express");
-// const multer = require("multer");
+const multer = require("multer");
 const postController = require("../../controllers/posts/postController");
-// const storage = require("../../utils/fileupload");
+const storage = require("../../utils/fileupload");
 //create multer instance
-// const upload = multer({ storage });
+const upload = multer({ storage });
 //!create instance express router
 const postRouter = express.Router();
 
 //-----Create post----
 
-postRouter.post(
-  "/posts/create",
-  //upload.single("image"),
-  postController.createPost
-);
+postRouter.post("/create", upload.single("image"), postController.createPost);
 
 //----lists all posts----
-postRouter.get("/posts", postController.fetchAllPosts);
+postRouter.get("/", postController.fetchAllPosts);
 
 //----update post----
-postRouter.put("/posts/:postId", postController.update);
+postRouter.put("/:postId", postController.update);
 
 //--- get post---
-postRouter.get("/posts/:postId", postController.getPost);
+postRouter.get("/:postId", postController.getPost);
 
 //---delete post---
-postRouter.delete("/posts/:postId", postController.delete);
+postRouter.delete("/:postId", postController.delete);
 
 module.exports = postRouter;
