@@ -113,6 +113,28 @@ const userController = {
     } catch (error) {}
     return res.status(401).json({ isAuthenticated: false, error });
   }),
+  
+   // ! Logout
+   logout: asyncHandler(async (req, res) => {
+    res.cookie("token", "", { maxAge: 1 });
+    res.status(200).json({ message: "Logout success" });
+  }),
+
+  //! Profile
+   profile: asyncHandler(async (req, res) => {
+     const user = await User.findById(req.user)
+       .populate("posts") // Keep only the posts
+       .select("-password"); // Exclude sensitive fields
+   
+     if (!user) {
+       res.status(404);
+       throw new Error("User not found");
+     }
+   
+     res.json({ user });
+   }),
+
 };
+
 
 module.exports = userController;

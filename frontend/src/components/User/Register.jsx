@@ -78,7 +78,7 @@ const Register = () => {
               Username
             </label>
             <input
-              className="w-full rounded-full p-4 outline-none border border-gray-100 shadow placeholder-gray-500 focus:ring focus:ring-orange-200 transition duration-200 mb-4"
+              className="w-full rounded-full p-4 outline-none border border-gray-100 shadow placeholder-gray-500 focus:ring focus:ring-purple-200 transition duration-200 mb-4"
               type="text"
               placeholder="Enter username"
               {...formik.getFieldProps("username")}
@@ -94,7 +94,7 @@ const Register = () => {
               Email
             </label>
             <input
-              className="w-full rounded-full p-4 outline-none border border-gray-100 shadow placeholder-gray-500 focus:ring focus:ring-orange-200 transition duration-200 mb-4"
+              className="w-full rounded-full p-4 outline-none border border-gray-100 shadow placeholder-gray-500 focus:ring focus:ring-purple-200 transition duration-200 mb-4"
               type="text"
               placeholder="john@email.com"
               {...formik.getFieldProps("email")}
@@ -139,15 +139,15 @@ const Register = () => {
               <div className="text-red-500 mt-1">{formik.errors.password}</div>
             )}
             <button
-              className="h-14 inline-flex items-center justify-center py-4 px-6 text-white font-bold font-heading rounded-full bg-orange-500 w-full text-center border border-orange-600 shadow hover:bg-orange-600 focus:ring focus:ring-orange-200 transition duration-200 mb-8"
+              className="h-14 inline-flex items-center justify-center py-4 px-6 text-white font-bold font-heading rounded-full bg-purple-500 w-full text-center border border-purple-600 shadow hover:bg-purple-600 focus:ring focus:ring-purple-200 transition duration-200 mb-8"
               type="submit"
             >
               Sign Up
             </button>
             {/* login with google */}
             <a
-              // href="http://localhost:9000/api/v1/users/auth/google"
-              className="h-14 inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-white w-full text-center border border-gray-100 shadow hover:bg-gray-50 focus:ring focus:ring-orange-200 transition duration-200"
+              href="http://localhost:5000/api/v1/users/auth/google"
+              className="h-14 inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-white w-full text-center border border-gray-100 shadow hover:bg-gray-50 focus:ring focus:ring-purple-200 transition duration-200"
               type="submit"
             >
               <svg

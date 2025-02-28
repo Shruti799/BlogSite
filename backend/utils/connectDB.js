@@ -13,9 +13,6 @@ const connectDB = async () => {
     }
 };
 
-// pass: i5mFePqeLL5PSubZ
-// user: shrutijwal999
-// url: mongodb+srv://shrutijwal999:i5mFePqeLL5PSubZ@blogsite-cluster.57cdi.mongodb.net/?retryWrites=true&w=majority&appName=BlogSite-cluster
 
 module.exports = connectDB;
 

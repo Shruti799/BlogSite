@@ -81,8 +81,6 @@ const CreatePost = () => {
   //Error
   const errorMsg = postMutation?.error?.response?.data?.message;
 
-  //! is Err
-  if (isError) return <AlertMessage type="error" message={errorMsg} />;
   return (
     <div className="flex items-center justify-center">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 m-4">
@@ -97,6 +95,7 @@ const CreatePost = () => {
         {isSuccess && (
           <AlertMessage type="success" message="Post created successfully" />
         )}
+        {isError && <AlertMessage type="error" message={errorMsg} />}
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           {/* Description Input - Using ReactQuill for rich text editing */}
           <div className="mb-10">
@@ -118,20 +117,6 @@ const CreatePost = () => {
             {formik.touched.description && formik.errors.description && (
               <span style={{ color: "red" }}>{formik.errors.description}</span>
             )}
-          </div>
-
-          {/* Category Input - Dropdown for selecting post category */}
-          <div>
-            {/* <label
-              htmlFor="category"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Category
-            </label> */}
-            {/* display error */}
-            {/* {formik.touched.category && formik.errors.category && (
-              <p className="text-sm text-red-600">{formik.errors.category}</p>
-            )} */}
           </div>
 
           {/* Image Upload Input - File input for uploading images */}
@@ -188,7 +173,7 @@ const CreatePost = () => {
           {/* Submit Button - Button to submit the form */}
           <button
             type="submit"
-            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-500 hover:from-indigo-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-purple-500 hover:from-indigo-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Add Post
           </button>
