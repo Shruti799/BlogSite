@@ -28,8 +28,9 @@ const PostDetails = () => {
   const { postId } = useParams();
 
   useEffect(() => {
-    fetchPost(postId, true); // Pass true to update views count
+    fetchPost(postId, true); // Passing true to update views count
   }, [postId]);
+  
   // ! use query
   const {
     isError,
