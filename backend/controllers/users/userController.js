@@ -43,8 +43,8 @@ const userController = {
       //set the token into cookie
       res.cookie("token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "strict",
+        secure: true,
+        sameSite: "None",
         maxAge: 24 * 60 * 60 * 1000, //1 day
       });
 
@@ -82,7 +82,7 @@ const userController = {
         res.cookie("token", token, {
           httpOnly: true,
           secure: false,
-          sameSite: "strict",
+          sameSite: "None",
           maxAge: 24 * 60 * 60 * 1000, //1 day:
         });
         //redirect the user dashboard

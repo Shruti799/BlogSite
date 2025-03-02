@@ -25,6 +25,7 @@ app.use(corse(corsOptions));
 // Passport middleware
 app.use(passport.initialize());
 app.use(cookieParser()); //automattically parses the cookie
+
 //!---Route handlers
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/users", usersRouter);
