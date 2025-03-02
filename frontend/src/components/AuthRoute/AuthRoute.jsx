@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../User/login";
+import Login from "../User/Login";
 import { useQuery } from "@tanstack/react-query";
 import { checkAuthStatusAPI } from "../../APIServices/users/usersAPI";
 import { Navigate } from "react-router-dom";
