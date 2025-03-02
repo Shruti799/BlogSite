@@ -81,7 +81,7 @@ const userController = {
         //set the token into the cooke
         res.cookie("token", token, {
           httpOnly: true,
-          secure: false,
+          secure: true,
           sameSite: "None",
           maxAge: 24 * 60 * 60 * 1000, //1 day:
         });
