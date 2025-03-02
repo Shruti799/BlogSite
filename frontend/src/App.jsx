@@ -1,11 +1,11 @@
 
-import CreatePost from "./components/Posts/CreatePost";
+import CreatePost from "./components/posts/CreatePost";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PublicNavbar from "./components/Navbar/PublicNavbar";
 import UpdatePost from "./components/posts/UpdatePost";
 import PostsList from "./components/posts/PostsList";
 import Home from "./components/Home/Home";
-import PostDetails from "./components/Posts/PostDetails";
+import PostDetails from "./components/posts/PostDetails";
 import Login from "./components/User/login";
 import Register from "./components/User/Register";
 import Profile from "./components/User/Profile";
