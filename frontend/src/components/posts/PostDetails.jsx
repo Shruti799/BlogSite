@@ -27,11 +27,21 @@ const PostDetails = () => {
   // !Get the post id
   const { postId } = useParams();
 
-  useEffect(() => {
-    fetchPost(postId, true); // Passing true to update views count
-  }, [postId]);
+  // useEffect(() => {
+  //   fetchPost(postId, true); // Passing true to update views count
+  // }, [postId]);
   
   // ! use query
+  // const {
+  //   isError,
+  //   isLoading,
+  //   data,
+  //   error,
+  //   refetch: refetchPost,
+  // } = useQuery({
+  //   queryKey: ["post-details"],
+  //   queryFn: () => fetchPost(postId,false),
+  // });
   const {
     isError,
     isLoading,
@@ -40,7 +50,7 @@ const PostDetails = () => {
     refetch: refetchPost,
   } = useQuery({
     queryKey: ["post-details"],
-    queryFn: () => fetchPost(postId,false),
+    queryFn: () => fetchPost(postId),
   });
 
 
@@ -112,6 +122,9 @@ const PostDetails = () => {
     },
   });
   console.log(commentMutation);
+
+  console.log("Views Count from API:", data?.postFound?.viewsCount);
+
 
   return (
     <div className="container mx-auto p-4">

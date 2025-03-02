@@ -33,8 +33,15 @@ export const fetchAllPosts = async () => {
 
 //! Fetch  post
 
-export const fetchPost = async (postId, updateViews = false) => {
-  const posts = await axios.get(`${BASE_URL}/${postId}?updateViews=${updateViews}`);
+// export const fetchPost = async (postId, updateViews = false) => {
+//   const posts = await axios.get(`${BASE_URL}/${postId}?updateViews=${updateViews}`);
+//   return posts.data;
+// };
+
+export const fetchPost = async (postId) => {
+  const posts = await axios.get(`${BASE_URL}/${postId}`, {
+    withCredentials: true,
+  });
   return posts.data;
 };
 
