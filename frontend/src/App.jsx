@@ -6,7 +6,7 @@ import UpdatePost from "./components/posts/UpdatePost";
 import PostsList from "./components/posts/PostsList";
 import Home from "./components/Home/Home";
 import PostDetails from "./components/posts/PostDetails";
-import Login from "./components/User/login";
+import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import Profile from "./components/User/Profile";
 import PrivateNavbar from "./components/Navbar/PrivateNavbar";
