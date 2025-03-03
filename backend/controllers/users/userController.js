@@ -31,65 +31,103 @@ const userController = {
     });
   }),
   // ! Login
-  login: asyncHandler(async (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-      if (err) return next(err);
-      //check if user not found
-      if (!user) {
-        return res.status(401).json({ message: info.message });
-      }
-      //generate token
-      const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET);
-      //set the token into cookie
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "None",
-        maxAge: 24 * 60 * 60 * 1000, //1 day
-      });
+  // login: asyncHandler(async (req, res, next) => {
+  //   passport.authenticate("local", (err, user, info) => {
+  //     if (err) return next(err);
+  //     //check if user not found
+  //     if (!user) {
+  //       return res.status(401).json({ message: info.message });
+  //     }
+  //     //generate token
+  //     const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET);
+  //     //set the token into cookie
+  //     res.cookie("token", token, {
+  //       httpOnly: true,
+  //       secure: true,
+  //       sameSite: "None",
+  //       maxAge: 24 * 60 * 60 * 1000, //1 day
+  //     });
 
-      //send the response
-      res.json({
-        status: "success",
-        message: "Login Success",
-        username: user?.username,
-        email: user?.email,
-        _id: user?._id,
-      });
+  //     //send the response
+  //     res.json({
+  //       status: "success",
+  //       message: "Login Success",
+  //       username: user?.username,
+  //       email: user?.email,
+  //       _id: user?._id,
+  //     });
+  //   })(req, res, next);
+  // }),
+
+  loginUser: asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    
+    // Find user
+    const user = await User.findOne({ email });
+    if (!user) throw new Error("User not found");
+  
+    // Verify password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) throw new Error("Invalid credentials");
+  
+    // Generate JWT token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "3d" });
+  
+    // Send token in response (instead of cookie)
+    res.json({ token, user });
+  }),
+
+
+  // ! googleAuth-->
+  // googleAuth: passport.authenticate("google", { scope: ["profile"] }),
+  // // ! GoogleAuthCallback
+  // googleAuthCallback: asyncHandler(async (req, res, next) => {
+  //   passport.authenticate(
+  //     "google",
+  //     {
+  //       failureRedirect: "/login",
+  //       session: false,
+  //     },
+  //     (err, user, info) => {
+  //       if (err) return next(err);
+  //       if (!user) {
+  //         return res.redirect("https://bloggers-vdm1.onrender.com/google-login-error");
+  //       }
+  //       //generate the token
+
+  //       const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
+  //         expiresIn: "3d",
+  //       });
+  //       //set the token into the cooke
+  //       res.cookie("token", token, {
+  //         httpOnly: true,
+  //         secure: true,
+  //         sameSite: "None",
+  //         maxAge: 24 * 60 * 60 * 1000, //1 day:
+  //       });
+  //       //redirect the user dashboard
+  //       res.redirect("https://bloggers-vdm1.onrender.com/dashboard");
+  //     }
+  //   )(req, res, next);
+  // }),
+
+  googleAuthCallback: asyncHandler(async (req, res, next) => {
+    passport.authenticate("google", { session: false }, (err, user, info) => {
+      if (err) return next(err);
+      if (!user) {
+        return res.redirect("https://bloggers-vdm1.onrender.com/google-login-error");
+      }
+      
+      // Generate JWT
+      const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, { expiresIn: "3d" });
+  
+      // Redirect with token in URL
+      res.redirect(`https://bloggers-vdm1.onrender.com/dashboard?token=${token}`);
     })(req, res, next);
   }),
-  // ! googleAuth-->
-  googleAuth: passport.authenticate("google", { scope: ["profile"] }),
-  // ! GoogleAuthCallback
-  googleAuthCallback: asyncHandler(async (req, res, next) => {
-    passport.authenticate(
-      "google",
-      {
-        failureRedirect: "/login",
-        session: false,
-      },
-      (err, user, info) => {
-        if (err) return next(err);
-        if (!user) {
-          return res.redirect("https://bloggers-vdm1.onrender.com/google-login-error");
-        }
-        //generate the token
 
-        const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
-          expiresIn: "3d",
-        });
-        //set the token into the cooke
-        res.cookie("token", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "None",
-          maxAge: 24 * 60 * 60 * 1000, //1 day:
-        });
-        //redirect the user dashboard
-        res.redirect("https://bloggers-vdm1.onrender.com/dashboard");
-      }
-    )(req, res, next);
-  }),
+  
+  
   // ! check user authentication status
   checkAuthenticated: asyncHandler(async (req, res) => {
     const token = req.cookies["token"];
