@@ -7,9 +7,6 @@ export const createPostAPI = async (postData) => {
   console.log(postData);
   const response = await axios.post(`${BASE_URL}/create`, postData, {
     withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-    },
   });
   return response.data;
 };
@@ -23,9 +20,6 @@ export const updatePostAPI = async ({ formData, postId }) => {
 
     {
       withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-      },
     }
   );
   return response.data;
@@ -47,9 +41,6 @@ export const fetchAllPosts = async () => {
 export const fetchPost = async (postId) => {
   const posts = await axios.get(`${BASE_URL}/${postId}`, {
     withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-    },
   });
   return posts.data;
 };
@@ -58,9 +49,6 @@ export const fetchPost = async (postId) => {
 export const deletePostAPI = async (postId) => {
   const posts = await axios.delete(`${BASE_URL}/${postId}`, {
     withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-    },
   });
   return posts.data;
 };
@@ -72,9 +60,6 @@ export const likePostAPI = async (postId) => {
     {},
     {
       withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-      },
     }
   );
   return response.data;
@@ -87,9 +72,6 @@ export const dislikePostAPI = async (postId) => {
     {},
     {
       withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-      },
     }
   );
   return response.data;
