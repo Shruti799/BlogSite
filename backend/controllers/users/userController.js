@@ -180,19 +180,56 @@ const userController = {
   }),
 
   // Google Auth
-  googleAuth: passport.authenticate("google", { scope: ["profile", "email"] }),
+googleAuth: passport.authenticate("google", { scope: ["email"] }),
 
-  // Google Auth Callback
-  googleAuthCallback: asyncHandler(async (req, res, next) => {
-    passport.authenticate("google", { session: false }, (err, user, info) => {
-      if (err) return next(err);
-      if (!user) return res.redirect("https://bloggers-vdm1.onrender.com/google-login-error");
+// Google Auth Callback
+googleAuthCallback: asyncHandler(async (req, res, next) => {
+    passport.authenticate("google", { session: false }, async (err, user, info) => {
+        if (err) {
+            console.error("Google Auth Error:", err);
+            return next(err);
+        }
 
-      const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, { expiresIn: "3d" });
+        if (!user) {
+            console.error("User Not Found in Google Auth");
+            return res.redirect("https://bloggers-vdm1.onrender.com/google-login-error");
+        }
 
-      res.redirect(`https://bloggers-vdm1.onrender.com/dashboard?token=${token}`);
+        try {
+            // Check if user already exists in the database
+            let existingUser = await User.findOne({ googleId: user.googleId });
+
+            if (!existingUser) {
+                // Ensure email exists (fix for "User Not Found")
+                let email = "";
+                if (Array.isArray(user.emails) && user.emails.length > 0) {
+                    email = user.emails[0].value;
+                }
+
+                existingUser = await User.create({
+                    username: user.displayName || user.username,
+                    email,
+                    googleId: user.googleId,
+                    //profilePicture: user.photos?.[0]?.value || "",
+                    authMethod: "google",
+                });
+
+                console.log("New Google User Created:", existingUser);
+            }
+
+            // Generate JWT token
+            const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET, { expiresIn: "3d" });
+
+            // Redirect with token in the URL
+            res.redirect(`https://bloggers-vdm1.onrender.com/dashboard?token=${token}`);
+
+        } catch (dbError) {
+            console.error("Database Error in Google Auth:", dbError);
+            return res.redirect("https://bloggers-vdm1.onrender.com/google-login-error");
+        }
     })(req, res, next);
-  }),
+}),
+
 
   // Check Authentication Status
   checkAuthenticated: asyncHandler(async (req, res) => {
