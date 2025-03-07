@@ -1,6 +1,6 @@
 import axios from "axios";
 //create that must return a promise
-const BASE_URL = "http://backend.instafocus.ins/api/v1/comments";
+const BASE_URL = "http://backend.instafocus.in/api/v1/comments";
 
 //!Create comment api
 export const createCommentAPI = async (data) => {
