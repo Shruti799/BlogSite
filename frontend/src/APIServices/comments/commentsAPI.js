@@ -1,6 +1,6 @@
 import axios from "axios";
 //create that must return a promise
-const BASE_URL = "http://blogsite-y4ve.onrender.com/api/v1/comments";
+const BASE_URL = "http://localhost:5000/api/v1/comments";
 
 //!Create comment api
 export const createCommentAPI = async (data) => {

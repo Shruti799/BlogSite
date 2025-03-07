@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json()); //Pass json data
 // corse middleware
 const corsOptions = {
-  origin:  "https://bloggers-vdm1.onrender.com",
+  origin:  "http://localhost:5173",
   credentials: true,
 };
 app.use(corse(corsOptions));
