@@ -46,8 +46,8 @@ const userController = {
       res.cookie("token", token, {
         httpOnly: true,
         secure: true,
-        sameSite: "None",
-        domain: ".instafocus.in",
+        sameSite: "strict",
+        //domain: ".instafocus.in",
         maxAge: 24 * 60 * 60 * 1000, //1 day
       });
 
@@ -87,8 +87,8 @@ const userController = {
         res.cookie("token", token, {
           httpOnly: true,
           secure: true,
-          sameSite: "None",
-          domain: "backend.instafocus.in",
+          sameSite: "strict",
+          //domain: ".instafocus.in",
           maxAge: 24 * 60 * 60 * 1000, //1 day:
         });
         //redirect the user dashboard
