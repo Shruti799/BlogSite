@@ -88,7 +88,7 @@ const userController = {
           httpOnly: true,
           secure: true,
           sameSite: "None",
-          domain: ".instafocus.in",
+          domain: "backend.instafocus.in",
           maxAge: 24 * 60 * 60 * 1000, //1 day:
         });
         //redirect the user dashboard
