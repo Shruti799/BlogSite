@@ -76,7 +76,7 @@ const userController = {
       (err, user, info) => {
         if (err) return next(err);
         if (!user) {
-          return res.redirect("http://frontend.instafocus.in/google-login-error");
+          return res.redirect("https://frontend.instafocus.in/google-login-error");
         }
         //generate the token
 
@@ -92,7 +92,7 @@ const userController = {
           maxAge: 24 * 60 * 60 * 1000, //1 day:
         });
         //redirect the user dashboard
-        res.redirect("http://frontend.instafocus.in/dashboard");
+        res.redirect("https://frontend.instafocus.in/dashboard");
       }
     )(req, res, next);
   }),

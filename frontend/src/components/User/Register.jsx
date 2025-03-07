@@ -146,7 +146,7 @@ const Register = () => {
             </button>
             {/* login with google */}
             <a
-              href="http://backend.instafocus.in/api/v1/users/auth/google"
+              href="https://backend.instafocus.in/api/v1/users/auth/google"
               className="h-14 inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-white w-full text-center border border-gray-100 shadow hover:bg-gray-50 focus:ring focus:ring-purple-200 transition duration-200"
               type="submit"
             >

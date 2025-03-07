@@ -1,1 +1,1 @@
-export const BASE_URL = "http://backend.instafocus.in/api/v1";
+export const BASE_URL = "https://backend.instafocus.in/api/v1";

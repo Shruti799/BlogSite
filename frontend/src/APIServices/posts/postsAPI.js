@@ -1,6 +1,6 @@
 import axios from "axios";
 //create that must return a promise
-const BASE_URL = "http://backend.instafocus.in/api/v1/posts";
+const BASE_URL = "https://backend.instafocus.in/api/v1/posts";
 
 //!Create post api
 export const createPostAPI = async (postData) => {

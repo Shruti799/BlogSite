@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json()); //Pass json data
 // corse middleware
 const corsOptions = {
-  origin:  "http://frontend.instafocus.in",
+  origin:  "https://frontend.instafocus.in",
   credentials: true,
 };
 app.use(corse(corsOptions));
