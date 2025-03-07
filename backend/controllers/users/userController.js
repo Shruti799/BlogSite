@@ -46,8 +46,8 @@ const userController = {
       res.cookie("token", token, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
-        //domain: ".instafocus.in",
+        sameSite: "None",
+        domain: ".instafocus.in",
         maxAge: 24 * 60 * 60 * 1000, //1 day
       });
 
@@ -83,12 +83,12 @@ const userController = {
         const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
           expiresIn: "3d",
         });
-        //set the token into the cooke
+        //set the token into the cookie
         res.cookie("token", token, {
           httpOnly: true,
           secure: true,
-          sameSite: "strict",
-          //domain: ".instafocus.in",
+          sameSite: "None",
+          domain: ".instafocus.in",
           maxAge: 24 * 60 * 60 * 1000, //1 day:
         });
         //redirect the user dashboard
