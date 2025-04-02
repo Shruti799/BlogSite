@@ -169,22 +169,6 @@ export default function PrivateNavbar() {
                   Latest Posts
                 </Disclosure.Button>
               </Link>
-              {/* <Link to="/rankings">
-                <Disclosure.Button
-                  as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
-                >
-                  Creators Ranking
-                </Disclosure.Button>
-              </Link>
-              <Link to="/pricing">
-                <Disclosure.Button
-                  as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
-                >
-                  Pricing
-                </Disclosure.Button>
-              </Link> */}
             </div>
             {/* Profile links */}
             <div className="border-t border-gray-200 pb-3 pt-4">
@@ -196,16 +180,6 @@ export default function PrivateNavbar() {
                       aria-hidden="true"
                     />
                   </span>
-                  {/* Profile Image */}
-                  {/* {data?.user?.profilePicture ? (
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src={data?.user?.profilePicture}
-                      alt="profile"
-                    />
-                  ) : (
-                    <Avatar />
-                  )} */}
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">
