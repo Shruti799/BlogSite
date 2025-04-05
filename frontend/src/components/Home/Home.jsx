@@ -25,7 +25,7 @@ const Home = () => {
               Get Started
             </Link>
 
-            <div className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat opacity-10 transition-opacity duration-300" style={{
+            <div className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat opacity-20 transition-opacity duration-300" style={{
               backgroundImage: 'url("/books.jpg")',
             }} />
 
