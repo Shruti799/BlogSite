@@ -25,9 +25,9 @@ const Home = () => {
               Get Started
             </Link>
 
-            <div className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat opacity-20 transition-opacity duration-300" style={{
+            {/* <div className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat opacity-20 transition-opacity duration-300" style={{
               backgroundImage: 'url("/books.jpg")',
-            }} />
+            }} /> */}
 
             <div className="mt-6 flex flex-col items-center">
               <p className="text-gray-700 text-sm">
@@ -57,6 +57,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat opacity-20 transition-opacity duration-300" style={{
+        backgroundImage: 'url("/books.jpg")',}} 
+      />
 
     </section>
   );
