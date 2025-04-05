@@ -82,7 +82,7 @@ const PostsList = () => {
         </div>
       </div>
       <div className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat opacity-20 transition-opacity duration-300" style={{
-        backgroundImage: 'url("/book-pencil.jpg")',
+        backgroundImage: 'url("pencils1.jpg")',
       }} />
     </section>
   );
