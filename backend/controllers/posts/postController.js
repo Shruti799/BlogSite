@@ -6,7 +6,7 @@ const postController = {
   //!Create post
   createPost: asyncHandler(async (req, res) => {
     //get the payload
-    const { description, category } = req.body;
+    const { description } = req.body;
   
     // find the user
     const userFound = await User.findById(req.user);
@@ -22,6 +22,7 @@ const postController = {
     //push the posts into user
     userFound.posts.push(postCreated?._id);
     await userFound.save();
+    
     res.json({
       status: "success",
       message: "Post created successfully",
@@ -63,7 +64,7 @@ getPost: asyncHandler(async (req, res) => {
           postFound.viewers.push(userId);
           postFound.viewsCount = postFound.viewsCount + 1;
 
-          // 🚀 **Force Mongoose to detect changes**
+          // Force Mongoose to detect changes
           postFound.markModified("viewers");
           postFound.markModified("viewsCount");
 
@@ -79,45 +80,6 @@ getPost: asyncHandler(async (req, res) => {
     postFound,
   });
 }),
-
- // get post
-//   getPost: asyncHandler(async (req, res) => {
-//     // Get the post ID from params
-//     const postId = req.params.postId;
-//     // Check for logged-in user
-//     const userId = req.user ? req.user : null;
-
-//     // Find the post
-//     let postFound = await Post.findById(postId).populate({
-//       path: "comments",
-//       populate: { path: "author" },
-//     });
-
-//     if (!postFound) {
-//       throw new Error("Post not found");
-//     }
-
-//     if (userId && !postFound.viewers.includes(userId)) {
-//         // Add user to viewers and increment views count
-//         postFound.viewers.push(userId);
-//         postFound.viewsCount += 1;
-
-//         // 🚀 **Force Mongoose to detect changes**
-//         postFound.markModified("viewers");
-//         postFound.markModified("viewsCount");
-
-//         // Save updated post
-//         await postFound.save();
-//     }
-
-//     res.json({
-//       status: "success",
-//       message: "Post fetched successfully",
-//       viewsCount: postFound.viewsCount,
-//       postFound,
-//     });
-// }),
-
 
 
   //! delete

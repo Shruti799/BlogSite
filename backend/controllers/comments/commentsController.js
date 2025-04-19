@@ -32,8 +32,7 @@ const commentsController = {
 
   //! delete
   delete: asyncHandler(async (req, res) => {}),
-  //! update category
-  update: asyncHandler(async (req, res) => {}),
+  
 };
 
 module.exports = commentsController;

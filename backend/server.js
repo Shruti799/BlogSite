@@ -10,9 +10,12 @@ const usersRouter = require("./router/user/usersRouter");
 const commentRouter = require("./router/comments/commentRouter");
 //call the db
 connectDB();
+
 const app = express();
 //! PORT
 const PORT = process.env.PORT || 5000;
+
+await Post.init(); // Ensures indexes are built at runtime
 
 //Middlewares
 app.use(express.json()); //Pass json data
